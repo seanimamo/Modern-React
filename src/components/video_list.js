@@ -24,15 +24,16 @@ const VideoList = (props) => {
     // Using the map function here, we create an array of <VideListItem /> tags and for each of those object within the props.videos array, we send it to the <VidoListItem /> component to use
     // notice that we also attach an object called key, which contains the etag for each video, which is a unique identifier for that video.
     // The reason we create a unique identifier called key for each array item, is so that if a specific <VideoListItem /> within thearray needs to be modified, we can just modify and rerender that <VideoListItem /> rather than rerendering all of the <VideoListItem />'s within the array.
+    // notice that the function we defined on VideoList within indexjs is being pulled from props and given as a function to each <VideoListItem /> to use
     const videoItems = props.videos.map((video)=>{
-        return(<VideoListItem video={video} key={video.etag}/>);
+        return(<VideoListItem video={video} key={video.etag} onVideoSelect={props.onVideoSelect}/>);
     });
 
     return(
         //notice that in JSX we use className to set the name of a class because we want to avoid conflicts with the javascript keyword class
         //Also Notice that we are sending in an array of <VideoListItem> components, which each consist of an <li>somedatahere</li>. React will recognize it is an array of li's and attempt to render all of them
         <div> 
-            <ul className="col-md-12 list-group">
+            <ul className="col-md-4 list-group">
                 video list: {props.videos.length}
                 {videoItems}
             </ul>

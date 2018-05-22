@@ -26,23 +26,29 @@ class SearchBar extends Component{
    // the event object descrbies the context and information about the event that occured. In this case, event.target.value tells us the value after being changed.
    // notice that we use this.setState to change the state.term value to the value of waht was typed into the input html. this forced the component to rerender.
 
-   // Another thing to understand is that when the user types something, they are not changing the value of the input tag, they are calling the onChange function which
-   // pulls the value that the user types and sets it to this.state.term, which in turn rerenders the element with the value set to this.state.term
-    render() {
+   // Another thing to understand is that when the user types something, they are not changing the value of the input tag, they are calling the onChange function which pulls the value that the user types and sets it to this.state.term, which in turn rerenders the element with the value set to this.state.term
+   // Remember, that we define a call to onInputChange as this.onInputChange because it is a method defined within this class
+   render() {
         return (
-            <div>
+            <div className="search-bar">
                 <input 
                 value={this.state.term}
-                onChange={(event)=> this.setState({ term: event.target.value }) }/>  
-                Value of the input: {this.state.term}
+                onChange={(event)=> this.onInputChange(event.target.value) }/>  
             </div>
         );
     }
 
     //  We would place this in onChange={this.onInputChange in our render function, but since its so simple we just do it inline above}
-    //  onInputChange = (event) => {
-    //     console.log(event.target.value);
-    // }
+     onInputChange = (term) => {
+        console.log("searchbar input changed to: ",term);
+        //this will rerender the searchbar component to contain exactly what the user has inputted
+        this.setState({
+            term:term
+        });
+        //next, we reset the state of the <App /> using the passed in function from props so that the video the user searched for is updated
+        //Remeber, we define props as this.props
+        this.props.onSearchTermChange(term);
+    }
 
 }
 
