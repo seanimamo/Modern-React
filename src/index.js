@@ -8,7 +8,7 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 //the api key we created at google.developer.console that contains the api key for the youtube data v3 app
-const API_KEY = 'AIzaSyDKpPFyIqHlCg55mFEJvfK4iVg56BuDgd0';
+const API_KEY = 'PLEASE FETCH A NEW KEY (HIDDEN FOR SECURITY PURPOSES)';
 
 // React has a concept known as Downwards dataflow. This means only the most parent component should be responsible for fetching data
 // so in otherwords, since this index.js is our most parent component, it will be responsible for fetching the data.
